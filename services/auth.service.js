@@ -82,6 +82,8 @@ const validJWT = async (req) => {
         status: message.STATUS_200,
         response: {
             ok: message.TRUE,
+            uid, 
+            name,
             token
         }            
     }
