@@ -1,12 +1,12 @@
 const ServiceAuth = require('../services/auth.service');
  
-const crearUsuario = async(req, res) => {
-    const resp = await ServiceAuth.crearUsuario(req.body);
+const createUser = async(req, res) => {
+    const resp = await ServiceAuth.createUser(req.body);
     res.status(resp.status).send(resp.response);    
 }
 
-const loginUsuario = async(req, res) => {
-    const resp = await ServiceAuth.loginUsuario(req.body);
+const loginUser = async(req, res) => {
+    const resp = await ServiceAuth.loginUser(req.body);
     res.status(resp.status).send(resp.response);    
 }
 
@@ -18,7 +18,7 @@ const validJWT = async (req, res) => {
 
 
 module.exports = {
-    crearUsuario,
-    loginUsuario,
+    createUser,
+    loginUser,
     validJWT
 }

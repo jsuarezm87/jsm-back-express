@@ -13,14 +13,14 @@ router.post(route.LOGIN, [
         check(field.EMAIL, message.EMAIL_REQUIRED).isEmail(),
         check(field.PASSWORD, message.INVALID_PASSWORD).isLength({ min: 5 }),
         validateField
-], ControllerAuth.loginUsuario);
+], ControllerAuth.loginUser);
 
 router.post(route.CREAR, [ 
         check(field.NAME, message.NAME_REQUIRED).not().isEmpty(),
         check(field.EMAIL, message.EMAIL_REQUIRED).isEmail(),
         check(field.PASSWORD, message.INVALID_PASSWORD).isLength({ min: 5 }),
         validateField
-], ControllerAuth.crearUsuario);
+], ControllerAuth.createUser);
 
 router.get(route.VAL_TOKEN, checkJWT , ControllerAuth.validJWT);
 

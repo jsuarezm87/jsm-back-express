@@ -1,58 +1,57 @@
 const bcrypt = require('bcryptjs');
-const Usuario = require('../models/Usuario');
+const User = require('../models/User');
 const { crearJWT } = require('../helpers/jwt');
 const message = require('../constants/messages');
-// const { checkJWT } = require('../middlewares/checkJWT');
  
-const crearUsuario = async(data) => {
+const createUser = async(data) => {
     const {email, password} = data;
 
     try {
-        let usuario = await Usuario.findOne({ email });
-        if (usuario) {
-            return(respuestaERR(message.STATUS_400, message.FALSE, message.EXISTING_USER));
+        let user = await User.findOne({ email });
+        if (user) {
+            return(respERR(message.STATUS_400, message.FALSE, message.EXISTING_USER));
         }
 
-        usuario = new Usuario(data);        
+        user = new User(data);        
         const salt = bcrypt.genSaltSync();
-        usuario.password = bcrypt.hashSync(password, salt);
+        user.password = bcrypt.hashSync(password, salt);
 
-        await usuario.save();
-        const token = await crearJWT( usuario.id, usuario.name );
-        return (respuestaOK(message.STATUS_200, message.TRUE, usuario.id, usuario.name, token));
+        await user.save();
+        const token = await crearJWT( user.id, user.name );
+        return (respOK(message.STATUS_200, message.TRUE, user.id, user.name, token));
         
     } catch (error) {
         console.log(error);
-        return(respuestaERR(message.STATUS_500, message.FALSE, message.CREATE_USER_ERROR));
+        return(respERR(message.STATUS_500, message.FALSE, message.CREATE_USER_ERROR));
     }
 }
 
 
-const loginUsuario = async(data) => {
+const loginUser = async(data) => {
     const { email, password } = data;
 
     try {        
-        const usuario = await Usuario.findOne({ email });
-        if (!usuario) {
-            return(respuestaERR(message.STATUS_400, message.FALSE, message.USER_EMAIL_NO_EXIST));
+        const user = await User.findOne({ email });
+        if (!user) {
+            return(respERR(message.STATUS_400, message.FALSE, message.USER_EMAIL_NO_EXIST));
         }
 
-        const validPassword = bcrypt.compareSync(password, usuario.password);
+        const validPassword = bcrypt.compareSync(password, user.password);
         if (!validPassword) {
-            return(respuestaERR(message.STATUS_400, message.FALSE, message.PASS_INCORRECT));
+            return(respERR(message.STATUS_400, message.FALSE, message.PASS_INCORRECT));
         }
 
-        const token = await crearJWT(usuario.id, usuario.name);
-        return (respuestaOK(message.STATUS_200, message.TRUE, usuario.id, usuario.name, token));
+        const token = await crearJWT(user.id, user.name);
+        return (respOK(message.STATUS_200, message.TRUE, user.id, user.name, token));
 
     } catch (error) {
         console.log(error);
-        return(respuestaERR(message.STATUS_500, message.FALSE, message.LOGIN_ERROR));
+        return(respERR(message.STATUS_500, message.FALSE, message.LOGIN_ERROR));
     }
 
 }
 
-const respuestaOK = (status, ok, uid, name, token) => {
+const respOK = (status, ok, uid, name, token) => {
     return {
         status,
         response: {
@@ -64,7 +63,7 @@ const respuestaOK = (status, ok, uid, name, token) => {
     }
 }
 
-const respuestaERR = (status, ok, msg) => {
+const respERR = (status, ok, msg) => {
     return {
         status,
         response: {
@@ -91,7 +90,7 @@ const validJWT = async (req) => {
 
 
 module.exports = {
-    crearUsuario,
-    loginUsuario,
+    createUser,
+    loginUser,
     validJWT
 }
