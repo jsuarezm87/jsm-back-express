@@ -1,5 +1,5 @@
 const message = require('../constants/messages');
-const { respOK, respERR, resp } = require('../helpers/apiResp');
+const { respERR, resp } = require('../helpers/response');
 const Customer = require('../models/Customer');
 
 

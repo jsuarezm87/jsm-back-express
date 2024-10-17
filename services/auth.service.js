@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const { crearJWT } = require('../helpers/jwt');
 const message = require('../constants/messages');
-const { respOK, respERR } = require('../helpers/apiResp');
+const { respERR, resp } = require('../helpers/response');
  
 const createUser = async(data) => {
     const {email, password} = data;
@@ -18,8 +18,16 @@ const createUser = async(data) => {
         user.password = bcrypt.hashSync(password, salt);
 
         await user.save();
-        const token = await crearJWT( user.id, user.name );
-        return (respOK(message.STATUS_200, message.TRUE, user.id, user.name, token));
+        const token = await crearJWT( user.id, user.name, user.email);
+        const response = {
+            ok: message.TRUE,
+            uid: user.id,
+            name: user.name,
+            token,
+            email
+
+        }
+        return (resp(message.STATUS_200, response));
         
     } catch (error) {
         console.log(error);
@@ -42,8 +50,18 @@ const loginUser = async(data) => {
             return(respERR(message.STATUS_400, message.FALSE, message.PASS_INCORRECT));
         }
 
-        const token = await crearJWT(user.id, user.name);
-        return (respOK(message.STATUS_200, message.TRUE, user.id, user.name, token));
+        const token = await crearJWT(user.id, user.name, user.email);
+        const response = {
+            ok: message.TRUE,
+            uid: user.id,
+            name: user.name,
+            token,
+            email: user.email
+
+        }
+
+        return (resp(message.STATUS_200, response));
+
 
     } catch (error) {
         console.log(error);
@@ -54,17 +72,17 @@ const loginUser = async(data) => {
 
 
 const validJWT = async (req) => {
-    const { uid, name } = req;
-    const token = await crearJWT(uid, name);
-    return {
-        status: message.STATUS_200,
-        response: {
-            ok: message.TRUE,
-            uid, 
-            name,
-            token
-        }            
+    const { uid, name, email } = req;
+    const token = await crearJWT(uid, name, email);
+    const response = {
+        ok: message.TRUE,
+        uid,
+        name,
+        token,
+        email
+
     }
+    return (resp(message.STATUS_200, response));
 }
 
 
