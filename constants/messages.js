@@ -7,10 +7,11 @@ const NOT_FOUND_TOKEN = 'No hay token en la solicitud';
 const INVALID_TOKEN = 'Token invalido';
 const NOT_GENERATE_TOKEN = 'Error generando token';
 const EXISTING_USER = 'El usuario ya existe';
-const USER_EMAIL_NO_EXIST = 'El usuario con el emial dado no existen';
+const USER_EMAIL_NO_EXIST = 'El usuario con el email dado no existen';
 const CREATE_USER_ERROR = 'Error al intentar crear el usuario';
 const LOGIN_ERROR = 'Error al intentar ingresar';
 const PASS_INCORRECT = 'Clave invalida';
+const CUSTOMER_EXIST = 'El cliente ya existe';
 const TRUE = true;
 const FALSE = false;
 const STATUS_400 = 400;
@@ -36,5 +37,6 @@ module.exports = {
     FALSE,
     STATUS_400,
     STATUS_200,
-    STATUS_500
+    STATUS_500,
+    CUSTOMER_EXIST
 };

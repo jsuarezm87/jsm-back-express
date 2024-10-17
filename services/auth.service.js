@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const { crearJWT } = require('../helpers/jwt');
 const message = require('../constants/messages');
+const { respOK, respERR } = require('../helpers/apiResp');
  
 const createUser = async(data) => {
     const {email, password} = data;
@@ -49,28 +50,6 @@ const loginUser = async(data) => {
         return(respERR(message.STATUS_500, message.FALSE, message.LOGIN_ERROR));
     }
 
-}
-
-const respOK = (status, ok, uid, name, token) => {
-    return {
-        status,
-        response: {
-            ok,
-            uid,
-            name,
-            token
-        }            
-    }
-}
-
-const respERR = (status, ok, msg) => {
-    return {
-        status,
-        response: {
-            ok,
-            msg
-        }            
-    }
 }
 
 
