@@ -18,7 +18,7 @@ const createUser = async(data) => {
         user.password = bcrypt.hashSync(password, salt);
 
         await user.save();
-        const token = await crearJWT( user.id, user.name, user.email);
+        const token = await crearJWT( user.id, user.name, email);
         const response = {
             ok: message.TRUE,
             uid: user.id,
@@ -49,7 +49,7 @@ const loginUser = async(data) => {
         if (!validPassword) {
             return(respERR(message.STATUS_400, message.FALSE, message.PASS_INCORRECT));
         }
-
+        
         const token = await crearJWT(user.id, user.name, user.email);
         const response = {
             ok: message.TRUE,

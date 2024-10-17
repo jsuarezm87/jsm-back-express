@@ -12,6 +12,7 @@ const CREATE_USER_ERROR = 'Error al intentar crear el usuario';
 const LOGIN_ERROR = 'Error al intentar ingresar';
 const PASS_INCORRECT = 'Clave invalida';
 const CUSTOMER_EXIST = 'El cliente ya existe';
+const CUSTOMER_ERROR = 'Error al intentar crear el cliente';
 const TRUE = true;
 const FALSE = false;
 const STATUS_400 = 400;
@@ -38,5 +39,6 @@ module.exports = {
     STATUS_400,
     STATUS_200,
     STATUS_500,
-    CUSTOMER_EXIST
+    CUSTOMER_EXIST,
+    CUSTOMER_ERROR
 };

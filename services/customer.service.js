@@ -8,7 +8,7 @@ const createCustomer = async (data) => {
         const { name, lastName, identification, address, phone, phone2, email, status, managedBy } = data;
 
         const customerBD =  await Customer.findOne({ identification });
-        if (customerBD) return(respERR(message.STATUS_400, message.FALSE, message.CUSTOMER_EXIST));
+        if (customerBD) return(resp(message.STATUS_400, {ok: message.FALSE, msg: message.CUSTOMER_EXIST}));
 
         const customer = new Customer({name, lastName, identification, address, phone, phone2, email, status, managedBy});
 
@@ -31,7 +31,7 @@ const createCustomer = async (data) => {
 
     } catch (err) {
         console.log(err);
-        return(respERR(message.STATUS_500, message.FALSE, message.LOGIN_ERROR));
+        return(respERR(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_ERROR}));
     }
     
     
