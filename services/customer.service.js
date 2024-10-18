@@ -1,5 +1,5 @@
 const message = require('../constants/messages');
-const { respERR, resp } = require('../helpers/response');
+const { resp } = require('../helpers/response');
 const Customer = require('../models/Customer');
 
 
@@ -31,7 +31,7 @@ const createCustomer = async (data) => {
 
     } catch (err) {
         console.log(err);
-        return(respERR(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_ERROR}));
+        return(resp(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_ERROR}));
     }
     
     

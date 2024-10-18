@@ -9,7 +9,7 @@ const customerSchema = Schema({
         type: String,
     },
     identification: {
-        type: String,
+        type: Number,
         required: true,
         unique: true,
     },
