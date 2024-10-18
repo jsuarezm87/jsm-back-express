@@ -30,7 +30,6 @@ const createCustomer = async (data) => {
         await customer.save();
 
         const response = {
-            // ok: message.TRUE, 
             name, 
             lastName, 
             identification, 

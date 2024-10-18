@@ -3,6 +3,7 @@ const DB_ERROR = 'Error iniciando base de datos';
 const EMAIL_REQUIRED = 'El email es obligatorio';
 const INVALID_PASSWORD = 'El password debe tener 5 caracteres';
 const NAME_REQUIRED = 'El nombre es obligatorio';
+const LAST_NAME_REQUIRED = 'El apellido es obligatorio';
 const NOT_FOUND_TOKEN = 'No hay token en la solicitud';
 const INVALID_TOKEN = 'Token invalido';
 const NOT_GENERATE_TOKEN = 'Error generando token';
@@ -13,6 +14,11 @@ const LOGIN_ERROR = 'Error al intentar ingresar';
 const PASS_INCORRECT = 'Clave invalida';
 const CUSTOMER_EXIST = 'El cliente ya existe';
 const CUSTOMER_ERROR = 'Error al intentar crear el cliente';
+const PHONE_ERROR = 'El numero de telefono no tiene el formato ###-#######';
+const IDENTIFICATION_ERROR = 'La identificacion debe tener minimo 8 digitos';
+const ADDRESS_REQUIRED = 'La direccion es obligatorio';
+const STATUS_REQUIRED = 'El estado es obligatorio';
+const MANAGEDBY_REQUIRED = 'Quien maneja el cliente es obligatorio';
 const TRUE = true;
 const FALSE = false;
 const STATUS_400 = 400;
@@ -40,5 +46,11 @@ module.exports = {
     STATUS_200,
     STATUS_500,
     CUSTOMER_EXIST,
-    CUSTOMER_ERROR
+    CUSTOMER_ERROR,
+    LAST_NAME_REQUIRED,
+    IDENTIFICATION_ERROR,
+    ADDRESS_REQUIRED,
+    PHONE_ERROR,
+    STATUS_REQUIRED,
+    MANAGEDBY_REQUIRED
 };
