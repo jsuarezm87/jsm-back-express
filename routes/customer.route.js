@@ -17,7 +17,7 @@ router.post(route.CREAR_CUSTOMER, [
         check(field.PHONE2, message.NAME_REQUIRED).not().isEmpty().matches(/^\d{3}-\d{7}$/),
         check(field.EMAIL, message.EMAIL_REQUIRED).isEmail(),
         check(field.STATUS, message.NAME_REQUIRED).not().isEmpty().isIn(['ACTIVO', 'INACTIVO']),
-        check(field.MANAGEDBY, message.INVALID_PASSWORD).not().isEmpty(),,
+        check(field.MANAGEDBY, message.INVALID_PASSWORD).not().isEmpty(),
         validateField
 ], ControllerCustomer.createCustomer);
 
