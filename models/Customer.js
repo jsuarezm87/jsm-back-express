@@ -28,8 +28,8 @@ const customerSchema = Schema({
         unique: true,
     },
     status: {
-        type: Boolean,
-        default: true
+        type: String,
+        required: true,
     },
     managedBy: {
         type: Schema.Types.ObjectId,
