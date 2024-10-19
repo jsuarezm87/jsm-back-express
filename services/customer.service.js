@@ -52,8 +52,14 @@ const createCustomer = async (data) => {
 
 const listCustomer = async () => {
     try {      
-        const customers =  await Customer.find();
-        return (resp(message.STATUS_200, customers));
+        const customers = await Customer.find().populate('managedBy', 'email -_id');
+       
+        const transformedCustomers = customers.map(customer => ({
+            ...customer.toObject(),
+            managedBy: customer.managedBy.email
+        }));
+
+        return (resp(message.STATUS_200, transformedCustomers));
     } catch (err) {
         console.log(err);
         return(resp(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_LIST_ERROR}));
