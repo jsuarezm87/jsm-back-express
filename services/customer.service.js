@@ -53,7 +53,6 @@ const createCustomer = async (data) => {
 const listCustomer = async () => {
     try {      
         const customers =  await Customer.find();
-        console.log('customers: ', customers);
         return (resp(message.STATUS_200, customers));
     } catch (err) {
         console.log(err);
