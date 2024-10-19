@@ -47,12 +47,21 @@ const createCustomer = async (data) => {
         console.log(err);
         return(resp(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_ERROR}));
     }
-    
-    
+}
 
 
+const listCustomer = async () => {
+    try {      
+        const customers =  await Customer.find();
+        console.log('customers: ', customers);
+        return (resp(message.STATUS_200, customers));
+    } catch (err) {
+        console.log(err);
+        return(resp(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_LIST_ERROR}));
+    }
 }
 
 module.exports = {
-    createCustomer
+    createCustomer,
+    listCustomer
 }

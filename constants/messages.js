@@ -14,6 +14,7 @@ const LOGIN_ERROR = 'Error al intentar ingresar';
 const PASS_INCORRECT = 'Clave invalida';
 const CUSTOMER_EXIST = 'El cliente ya existe';
 const CUSTOMER_ERROR = 'Error al intentar crear el cliente';
+const CUSTOMER_LIST_ERROR = 'Error al intentar consultar los clientes';
 const PHONE_ERROR = 'El formato debe ser ###-#######';
 const IDENTIFICATION_ERROR = 'Debe tener minimo 8 digitos';
 const ADDRESS_REQUIRED = 'La direccion es obligatorio';
@@ -52,5 +53,6 @@ module.exports = {
     ADDRESS_REQUIRED,
     PHONE_ERROR,
     STATUS_REQUIRED,
-    MANAGEDBY_REQUIRED
+    MANAGEDBY_REQUIRED,
+    CUSTOMER_LIST_ERROR
 };

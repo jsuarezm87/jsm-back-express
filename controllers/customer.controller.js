@@ -5,8 +5,14 @@ const createCustomer = async(req, res) => {
     res.status(resp.status).send(resp.response);    
 }
 
+const listCustomer = async(req, res) => {
+    const resp = await ServiceCustomer.listCustomer();
+    res.status(resp.status).send(resp.response);    
+}
+
 
 
 module.exports = {
-    createCustomer
+    createCustomer,
+    listCustomer
 }

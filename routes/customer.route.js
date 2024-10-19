@@ -21,5 +21,8 @@ router.post(route.CREAR_CUSTOMER, [
         validateField
 ], ControllerCustomer.createCustomer);
 
+router.get(route.LIST_CUSTOMER, ControllerCustomer.listCustomer);
+
+
 
 module.exports = router;
