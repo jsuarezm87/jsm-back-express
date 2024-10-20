@@ -10,9 +10,18 @@ const listCustomer = async(req, res) => {
     res.status(resp.status).send(resp.response);    
 }
 
+const updateCustomer = async(req, res) => {
+    const { id } = req.params;
+    const { name, lastName, address, phone, phone2, email, status } = req.body;
+    console.log({ name, lastName, address, phone, phone2, email, status });
+    console.log({id});
+    const resp = await ServiceCustomer.updateCustomer(id, { name, lastName, address, phone, phone2, email, status });
+    res.status(resp.status).send(resp.response);    
+}
 
 
 module.exports = {
     createCustomer,
-    listCustomer
+    listCustomer,
+    updateCustomer
 }

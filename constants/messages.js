@@ -13,6 +13,7 @@ const CREATE_USER_ERROR = 'Error al intentar crear el usuario';
 const LOGIN_ERROR = 'Error al intentar ingresar';
 const PASS_INCORRECT = 'Clave invalida';
 const CUSTOMER_EXIST = 'El cliente ya existe';
+const CUSTOMER_NO_EXIST = 'El cliente no existe';
 const CUSTOMER_ERROR = 'Error al intentar crear el cliente';
 const CUSTOMER_LIST_ERROR = 'Error al intentar consultar los clientes';
 const PHONE_ERROR = 'El formato debe ser ###-#######';
@@ -54,5 +55,6 @@ module.exports = {
     PHONE_ERROR,
     STATUS_REQUIRED,
     MANAGEDBY_REQUIRED,
-    CUSTOMER_LIST_ERROR
+    CUSTOMER_LIST_ERROR,
+    CUSTOMER_NO_EXIST
 };

@@ -53,8 +53,6 @@ const createCustomer = async (data) => {
 const listCustomer = async () => {
     try {      
         const customers = await Customer.find().populate('managedBy', 'email -_id');
-
-        console.log('customers: ', customers)
        
         const transformedCustomers = customers.map(customer => {
             const { __v, managedBy, ...data } = customer.toObject();
@@ -72,7 +70,30 @@ const listCustomer = async () => {
     }
 }
 
+const updateCustomer = async (id, data) => {
+    try {      
+        const customerBD = await Customer.findById(id);
+        console.log({customerBD});
+
+        if (!customerBD) return(resp(message.STATUS_400, {ok: message.FALSE, msg: message.CUSTOMER_NO_EXIST}));
+
+        const updateCustomer = {
+            customerBD,
+            ...data
+        }
+
+        const customer = await Customer.findByIdAndUpdate( id, updateCustomer, {new: true});
+
+        return (resp(message.STATUS_200, customer));
+    } catch (err) {
+        console.log(err);
+        return(resp(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_LIST_ERROR}));
+    }
+}
+
+
 module.exports = {
     createCustomer,
-    listCustomer
+    listCustomer,
+    updateCustomer
 }

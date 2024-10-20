@@ -23,6 +23,7 @@ router.post(route.CREAR_CUSTOMER, [
 
 router.get(route.LIST_CUSTOMER, ControllerCustomer.listCustomer);
 
+router.put('/update/:id', [validateField], ControllerCustomer.updateCustomer);
 
 
 module.exports = router;
