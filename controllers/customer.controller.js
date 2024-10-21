@@ -18,9 +18,16 @@ const updateCustomer = async(req, res) => {
     res.status(resp.status).send(resp.response);    
 }
 
+const deleteCustomer = async(req, res) => {
+    const { id } = req.params;
+    const resp = await ServiceCustomer.deleteCustomer(id);
+    res.status(resp.status).send(resp.response);    
+}
+
 
 module.exports = {
     createCustomer,
     listCustomer,
-    updateCustomer
+    updateCustomer,
+    deleteCustomer
 }

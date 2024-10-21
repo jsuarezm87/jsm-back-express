@@ -1,4 +1,5 @@
 const message = require('../constants/messages');
+const { mongoIdValidator } = require('../helpers/inputsValidators');
 const { resp } = require('../helpers/response');
 const Customer = require('../models/Customer');
 const User = require('../models/User');
@@ -61,7 +62,6 @@ const listCustomer = async () => {
                 managedBy: managedBy.email 
             };
         });
-        console.log('transformedCustomers: ', transformedCustomers)
 
         return (resp(message.STATUS_200, transformedCustomers));
     } catch (err) {
@@ -73,7 +73,6 @@ const listCustomer = async () => {
 const updateCustomer = async (id, data) => {
     try {      
         const customerBD = await Customer.findById(id);
-        console.log({customerBD});
 
         if (!customerBD) return(resp(message.STATUS_400, {ok: message.FALSE, msg: message.CUSTOMER_NO_EXIST}));
 
@@ -91,9 +90,30 @@ const updateCustomer = async (id, data) => {
     }
 }
 
+const deleteCustomer = async (id) => {
+
+    try {
+        if (!mongoIdValidator(id))  return (resp(message.STATUS_400, {ok: message.FALSE, msg: message.MONGO_ID_ERROR}));
+    
+        const customerBD = await Customer.findById(id);
+    
+        if (!customerBD) return(resp(message.STATUS_400, {ok: message.FALSE, msg: message.CUSTOMER_NO_EXIST}));
+    
+        await Customer.findByIdAndDelete(id);
+        
+
+        return (resp(message.STATUS_200, {ok: message.TRUE, msg: message.CUSTOMER_DELETE}));
+    } catch (err) {
+        console.log(err);
+        return(resp(message.STATUS_500, {ok: message.FALSE, msg: message.CUSTOMER_DELETE_ERROR}));
+    }  
+    
+}
+
 
 module.exports = {
     createCustomer,
     listCustomer,
-    updateCustomer
+    updateCustomer,
+    deleteCustomer
 }

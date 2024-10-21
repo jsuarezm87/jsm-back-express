@@ -14,6 +14,7 @@ const LOGIN_ERROR = 'Error al intentar ingresar';
 const PASS_INCORRECT = 'Clave invalida';
 const CUSTOMER_EXIST = 'El cliente ya existe';
 const CUSTOMER_NO_EXIST = 'El cliente no existe';
+const MONGO_ID_ERROR= 'El ID no es un mongo id valido';
 const CUSTOMER_ERROR = 'Error al intentar crear el cliente';
 const CUSTOMER_LIST_ERROR = 'Error al intentar consultar los clientes';
 const PHONE_ERROR = 'El formato debe ser ###-#######';
@@ -21,6 +22,8 @@ const IDENTIFICATION_ERROR = 'Debe tener minimo 8 digitos';
 const ADDRESS_REQUIRED = 'La direccion es obligatorio';
 const STATUS_REQUIRED = 'El estado es obligatorio';
 const MANAGEDBY_REQUIRED = 'Quien maneja el cliente es obligatorio';
+const CUSTOMER_DELETE = 'Cliente borrado con exito';
+const CUSTOMER_DELETE_ERROR = 'Error al intentar borrar el cliente';
 const TRUE = true;
 const FALSE = false;
 const STATUS_400 = 400;
@@ -56,5 +59,8 @@ module.exports = {
     STATUS_REQUIRED,
     MANAGEDBY_REQUIRED,
     CUSTOMER_LIST_ERROR,
-    CUSTOMER_NO_EXIST
+    CUSTOMER_NO_EXIST,
+    MONGO_ID_ERROR,
+    CUSTOMER_DELETE,
+    CUSTOMER_DELETE_ERROR
 };
