@@ -24,11 +24,13 @@ const STATUS_REQUIRED = 'El estado es obligatorio';
 const MANAGEDBY_REQUIRED = 'Quien maneja el cliente es obligatorio';
 const CUSTOMER_DELETE = 'Cliente borrado con exito';
 const CUSTOMER_DELETE_ERROR = 'Error al intentar borrar el cliente';
+const UNAUTHORIZED_OPERATION = 'No autorizado para operar este recurso';
 const TRUE = true;
 const FALSE = false;
 const STATUS_400 = 400;
 const STATUS_200 = 200;
 const STATUS_500 = 500;
+const STATUS_403 = 403;
 
 
 module.exports = {
@@ -62,5 +64,7 @@ module.exports = {
     CUSTOMER_NO_EXIST,
     MONGO_ID_ERROR,
     CUSTOMER_DELETE,
-    CUSTOMER_DELETE_ERROR
+    CUSTOMER_DELETE_ERROR,
+    UNAUTHORIZED_OPERATION,
+    STATUS_403
 };

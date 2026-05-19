@@ -23,7 +23,16 @@ class Server {
     }
 
     middlewares() {
-        this.app.use(cors());
+        const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173,http://localhost:3000')
+            .split(',')
+            .map(origin => origin.trim());
+
+        this.app.use(cors({
+            origin: allowedOrigins,
+            methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+            allowedHeaders: ['Content-Type', 'Authorization', 'login-token'],
+            credentials: true,
+        }));
         this.app.use(express.json());
         this.app.use(express.static('public'));
     }

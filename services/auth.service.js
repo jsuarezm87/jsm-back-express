@@ -30,7 +30,7 @@ const createUser = async(data) => {
         return (resp(message.STATUS_200, response));
         
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return(respERR(message.STATUS_500, message.FALSE, message.CREATE_USER_ERROR));
     }
 }
@@ -64,7 +64,7 @@ const loginUser = async(data) => {
 
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return(respERR(message.STATUS_500, message.FALSE, message.LOGIN_ERROR));
     }
 

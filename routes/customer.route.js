@@ -2,6 +2,7 @@ const {Router} = require('express');
 const {check} = require('express-validator');
 const {validateField} = require('../middlewares/checkFields');
 const ControllerCustomer = require('../controllers/customer.controller');
+const {checkJWT} = require('../middlewares/checkJWT');
 const route = require('../constants/routes');
 const field = require('../constants/fields');
 const message = require('../constants/messages');
@@ -9,6 +10,7 @@ const message = require('../constants/messages');
 const router = Router();
 
 router.post(route.CREAR_CUSTOMER, [ 
+        checkJWT,
         check(field.NAME, message.NAME_REQUIRED).not().isEmpty(),
         check(field.LASTNAME, message.LAST_NAME_REQUIRED).not().isEmpty(),
         check(field.IDENTIFICATION, message.IDENTIFICATION_ERROR).isLength({ min: 8 }),
@@ -21,10 +23,10 @@ router.post(route.CREAR_CUSTOMER, [
         validateField
 ], ControllerCustomer.createCustomer);
 
-router.get(route.LIST_CUSTOMER, ControllerCustomer.listCustomer);
+router.get(route.LIST_CUSTOMER, [checkJWT], ControllerCustomer.listCustomer);
 
-router.put(route.UPDATE_CUSTOMER, [validateField], ControllerCustomer.updateCustomer);
-router.put(route.DALETE_CUSTOMER, [validateField], ControllerCustomer.deleteCustomer);
+router.put(route.UPDATE_CUSTOMER, [checkJWT, validateField], ControllerCustomer.updateCustomer);
+router.put(route.DALETE_CUSTOMER, [checkJWT, validateField], ControllerCustomer.deleteCustomer);
 
 
 module.exports = router;
